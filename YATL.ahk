@@ -41,6 +41,7 @@ yatl_control_bgcolor = 444444
 yatl_guiW = 400
 yatl_listboxH = 300
 yatl_x := ( A_ScreenWidth - 420 )
+add_task_points := 5
 points      = 0
 pointsSent  = 0
 pointsTimer = 0
@@ -342,7 +343,7 @@ AddOrEditTask:
 	If not yatl_edit
 		return
 	If (yatl_action = "add")
-	{	yatl_edit := "[5] " . yatl_edit
+	{	yatl_edit := "[" . add_task_points . "] " . yatl_edit
 		i := LB_GetCurrentSelection(hList)
 		i := (i >= 0) ? i + 1 : i
 		LB_InsertString(hList, i, yatl_edit)
@@ -584,6 +585,7 @@ FlushQueue() {
   global points
   URLDownloadToFile, http://points4.me/addpoints.php?u=1&points=%points% , points.txt
   points := 0
+  pointsSent := 0
 
   SoundBeep, 4800, 50
 }
@@ -702,5 +704,3 @@ json(ByRef js, s, v = "") {
 
 /*******************************************************************************
 /*************** DO NOT MODIFY BELOW THIS LINE: Saved YATL List ****************
-[5] yatl
-	[5] test
