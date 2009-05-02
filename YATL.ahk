@@ -57,6 +57,7 @@ Hotkey, ~a,		Add5
 Hotkey, ~f,		Flush
 Hotkey, ~r,		Reload
 Hotkey, ~t,		Timer
+Hotkey, +t,		Timer5
 Hotkey, ~NumpadDel,	CheckOffAndRemove
 Hotkey, ~Del,	CheckOffAndRemove
 Hotkey, ~s,	Archive
@@ -569,6 +570,27 @@ EndTimer:
   val := (points + pointsSent) - pointsTimer
   MsgBox ,,, %val%, 2
   SetTimer, EndTimer, Off 
+return
+
+Timer5:
+GuiControlGet, focused_control, focusv
+If ( focused_control != "yatl_list" )
+	return	
+i := LB_GetCurrentSelection( hList )
+If (i < 0)
+	return
+
+  pointsTimer := (points + pointsSent)
+  ;MsgBox ,,, %points%, 2
+  SoundBeep, 4800, 50
+  SetTimer, EndTimer5, 300000
+return
+
+EndTimer5:
+  SoundBeep, 4800, 50
+  val := (points + pointsSent) - pointsTimer
+  MsgBox ,,, %val%, 2
+  SetTimer, EndTimer5, Off 
 return
 
 Flush:
