@@ -45,6 +45,13 @@ add_task_points := 5
 points      = 0
 pointsSent  = 0
 pointsTimer = 0
+ini := "yatl.ini"
+
+; Init
+;---------------------------------------
+IniRead,  user, %ini%, core, user, 0
+IniWrite, %user%, %ini%, core, user
+
 
 ; Set the hotkeys
 ;---------------------------------------
@@ -604,8 +611,10 @@ Flush:
 return
 
 FlushQueue() {
-  global points
-  URLDownloadToFile, http://points4.me/addpoints.php?u=1&points=%points% , points.txt
+  global points, user
+
+  ;MsgBox http://points4.me/addpoints.php?u=%user%&points=%points%
+  URLDownloadToFile, http://points4.me/addpoints.php?u=%user%&points=%points% , points.txt
   points := 0
   pointsSent := 0
 
