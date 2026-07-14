@@ -1,1 +1,11 @@
 test
+
+YATL - Yet Another Todo List
+
+- YATL.ahk : original Windows AutoHotkey version (2009), kept as-is
+- yatl.py  : Linux terminal re-implementation (Python), no dependencies
+- yatl.js  : same, in Node - shares data files with yatl.py
+
+Run:  ./yatl.py  or  ./yatl.js
+Keys: press h inside the app for the command list.
+Data: ~/.local/share/yatl (override with YATL_DIR)
